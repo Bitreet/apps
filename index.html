@@ -102,8 +102,9 @@
 <a type="button" class="btn btn-lg btn-success" href="itms-services:///?action=download-manifest&url=https://bitreet.github.io/iosapp/manifest.plist" style="width:200px;"><i class="fa fa-fw fa-apple"></i>点此安装IOS端</a>
 </div>
 <div class="col-lg-12" style="margin-top:20px;">        
-<a type="button" class="btn btn-lg btn-success" href="https://bitreet.github.io/apps/bitreet.apk" style="width:200px;"><i class="fa fa-fw fa-android"></i>点此安装Android端</a>
+<a id="J_weixin" type="button" class="btn btn-lg btn-success" href="https://bitreet.github.io/apps/bitreet.apk" style="width:200px;"><i class="fa fa-fw fa-android"></i>点此安装Android端</a>
 </div>
+<div id="weixin-tip"><p><img src="./dist/img/live_weixin.png" alt="微信打开"/><span id="close" title="关闭" class="close">×</span></p></div>
 </div>
 </div>
 </div>
@@ -234,6 +235,9 @@ API文档
 </div>
 </div>
 <style type="text/css"> 
+#weixin-tip{display:none;position:fixed;left:0;top:0;background:rgba(0,0,0,0.8);filter:alpha(opacity=80);width:100%;height:100%;z-index:100;}
+#weixin-tip p{text-align:center;margin-top:10%;padding:0 5%;position:relative;}
+#weixin-tip .close{color:#fff;padding:5px;font:bold 20px/24px simsun;text-shadow:0 1px 0 #ddd;position:absolute;top:0;left:5%;}
 .sub-footer a{
     color:white;
 }
@@ -286,9 +290,23 @@ API文档
 </style>
 
 <script>
-$(document).ready(function(){
-    //$('#wa-footer').show();
-});
+var is_weixin = (function(){return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1})();
+window.onload = function() {
+    var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight; //兼容IOS，不需要的可以去掉
+    var btn = document.getElementById('J_weixin');
+    var tip = document.getElementById('weixin-tip');
+    var close = document.getElementById('close');
+    if (is_weixin) {
+        btn.onclick = function(e) {
+            tip.style.height = winHeight + 'px'; //兼容IOS弹窗整屏
+            tip.style.display = 'block';
+            return false;
+        }
+        close.onclick = function() {
+            tip.style.display = 'none';
+        }
+    }
+}
 </script>
 
 </div></body></html>
