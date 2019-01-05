@@ -88,7 +88,7 @@
 </header>
 <div class="content-wrapper" style="min-height: 654px;">
 <div class="container">
-<div class="modal fade" id="J_weixin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="jmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:100%;margin:0px;">
         <div class="modal-content" style="background-color:black;">
 <img src="./dist/img/live_weixin.png" alt="微信打开" style="width:100%;z-index:100000;" />
@@ -304,11 +304,7 @@ window.onload = function() {
     var btn = document.getElementById('J_weixin');
     if (is_weixin) {
         btn.onclick = function(e) {
-            $('#J_weixin').modal('show')
-            return false;
-        }
-        close.onclick = function() {
-            tip.style.display = 'none';
+            $('#jmodal').modal('show');
         }
     }else{
         btn.onclick = function(e) {
